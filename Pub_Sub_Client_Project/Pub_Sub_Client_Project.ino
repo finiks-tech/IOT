@@ -7,13 +7,13 @@
 #include <DallasTemperature.h>
 
 #define ONE_WIRE_BUS 2
-#define relay1 5
+#define relay1 5	//define relays
 #define relay2 16
 
-const char* ssid = "king";
+const char* ssid = "admin";	//your wifi ssid
 const char* password = "********";
 
-const char* mqtt_server = "192.168.1.105";
+const char* mqtt_server = "192.168.1.105"; //your mqtt Server addres
 
 OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
@@ -53,9 +53,9 @@ void callback(String topic, byte* message, unsigned int length) {
   }
 //-----------------------------------------
 //**********************
-if(topic=="home/IR"){
+if(topic=="home/IR"){		//check topics and payloads message
     if (messagein == "PO"){ 
-    irsend.sendNEC(0xFDC03F);
+    irsend.sendNEC(0xFDC03F);	//send IR hex code
       Serial.println("POWER");
   }else if (messagein == "VU"){
     irsend.sendNEC(0xFD6897);
